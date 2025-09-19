@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIAN-DEV | Jasa Pembuatan Game & Aset</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>VIAN-DEV - Game Development & Digital Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* FONTS & RESET */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-        
         :root {
-            --primary: #2A9D8F;
-            --secondary: #E9C46A;
-            --dark: #264653;
-            --light: #F4F1DE;
-            --accent: #E76F51;
+            --primary: #2c6e49;
+            --secondary: #4d774e;
+            --accent: #ffc145;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --danger: #dc3545;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
         }
         
         * {
@@ -25,101 +26,65 @@
             font-family: 'Poppins', sans-serif;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-        
         body {
-            background-color: #F8F9FA;
-            color: #333;
+            background-color: #f8f9fa;
+            min-height: 100vh;
             overflow-x: hidden;
         }
         
-        /* NAVBAR */
-        .navbar {
-            position: fixed;
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 15px 0;
-            transition: all 0.3s ease;
         }
         
-        .navbar.scrolled {
-            padding: 10px 0;
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .navbar-container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
         
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-        
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--dark));
-            color: white;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 700;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            top: -20px;
-            left: -20px;
-            transition: all 0.5s ease;
-        }
-        
-        .logo:hover .logo-icon::before {
-            transform: scale(1.5);
+            text-decoration: none;
         }
         
         .logo-text {
+            font-size: 1.8rem;
             font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--dark);
+            color: var(--primary);
         }
         
-        .logo-text span {
-            color: var(--primary);
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            animation: float 3s ease-in-out infinite;
         }
         
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 2rem;
+            list-style: none;
         }
         
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
+            transition: color 0.3s;
             position: relative;
-            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
         }
         
         .nav-links a::after {
@@ -127,387 +92,265 @@
             position: absolute;
             width: 0;
             height: 2px;
-            background: var(--primary);
-            left: 0;
             bottom: -5px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
         }
         
         .nav-links a:hover::after {
             width: 100%;
         }
         
-        .mobile-menu-btn {
-            display: none;
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .cart-btn {
+            position: relative;
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--dark);
             cursor: pointer;
         }
         
-        /* HERO SECTION */
-        .hero {
-            height: 100vh;
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
             display: flex;
+            justify-content: center;
             align-items: center;
-            padding: 0 50px;
+        }
+        
+        .primary-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .primary-btn:hover {
+            background-color: #1a5c36;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(44, 110, 73, 0.9), rgba(44, 110, 73, 0.7)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 1rem;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0,0 L100,100" stroke="rgba(42, 157, 143, 0.1)" stroke-width="1"/></svg>');
-            animation: bgMove 20s linear infinite;
-        }
-        
-        @keyframes bgMove {
-            0% { transform: translateX(0) translateY(0); }
-            100% { transform: translateX(-50%) translateY(-50%); }
-        }
-        
-        .hero-container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 1;
         }
         
         .hero-content {
-            flex: 1;
-        }
-        
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-        
-        .hero-title span {
-            color: var(--primary);
+            max-width: 800px;
+            margin: 0 auto;
             position: relative;
-            display: inline-block;
+            z-index: 2;
         }
         
-        .hero-title span::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 8px;
-            background: var(--secondary);
-            bottom: 5px;
-            left: 0;
-            z-index: -1;
-            opacity: 0.5;
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s;
         }
         
-        .hero-subtitle {
+        .hero p {
             font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s 0.2s forwards;
+            opacity: 0;
         }
         
-        .hero-buttons {
+        .cta-buttons {
             display: flex;
-            gap: 15px;
+            justify-content: center;
+            gap: 1rem;
+            animation: fadeInUp 1s 0.4s forwards;
+            opacity: 0;
         }
         
-        .btn {
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        .secondary-btn {
+            background-color: transparent;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid white;
+            border-radius: 5px;
+            font-weight: 500;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .secondary-btn:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .accent-btn {
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .accent-btn:hover {
+            background-color: #e6ac3c;
+        }
+        
+        /* Promo Banner */
+        .promo-banner {
+            background-color: var(--accent);
+            color: var(--dark);
+            text-align: center;
+            padding: 1rem;
             position: relative;
             overflow: hidden;
         }
         
-        .btn::before {
-            content: '';
+        .promo-banner h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .promo-banner p {
+            font-size: 0.9rem;
+        }
+        
+        .discount-badge {
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
+            top: -20px;
+            right: 20px;
+            background-color: var(--danger);
             color: white;
-            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
-        }
-        
-        .btn-primary:hover {
-            background: #238a7e;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.4);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--dark);
-            border: 2px solid var(--dark);
-        }
-        
-        .btn-outline:hover {
-            background: var(--dark);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(38, 70, 83, 0.2);
-        }
-        
-        .hero-image {
-            flex: 1;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
             display: flex;
-            justify-content: flex-end;
-            position: relative;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transform: rotate(15deg);
+            animation: pulse 2s infinite;
+            font-weight: bold;
         }
         
-        .hero-img-container {
-            width: 500px;
-            height: 500px;
-            position: relative;
+        .discount-badge span:first-child {
+            font-size: 1.5rem;
         }
         
-        .floating {
-            animation: float 3s ease-in-out infinite;
+        /* Category Filter */
+        .category-filter {
+            padding: 1rem 0;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
         }
         
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0 1rem;
         }
         
-        .hero-blob {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            animation: blob-animation 10s linear infinite;
-            opacity: 0.1;
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background-color: #eee;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
         }
         
-        @keyframes blob-animation {
-            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            25% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
-            50% { border-radius: 30% 70% 70% 30% / 50% 60% 30% 60%; }
-            75% { border-radius: 50% 50% 30% 70% / 60% 30% 70% 40%; }
-            100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
         }
         
-        .hero-illustration {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            z-index: 1;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
-        }
-        
-        /* FEATURES SECTION */
-        .section {
-            padding: 100px 0;
-        }
-        
-        .section-container {
-            width: 90%;
+        /* Services Section */
+        .services {
+            padding: 5rem 1rem;
             max-width: 1200px;
             margin: 0 auto;
         }
         
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 3rem;
         }
         
-        .section-subtitle {
+        .section-header h2 {
             color: var(--primary);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
             position: relative;
             display: inline-block;
         }
         
-        .section-subtitle::before,
-        .section-subtitle::after {
+        .section-header h2::after {
             content: '';
             position: absolute;
-            width: 30px;
-            height: 2px;
-            background: var(--primary);
-            top: 50%;
+            width: 50%;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: -10px;
+            left: 25%;
         }
         
-        .section-subtitle::before {
-            left: -40px;
-        }
-        
-        .section-subtitle::after {
-            right: -40px;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 20px;
-        }
-        
-        .section-description {
-            max-width: 600px;
+        .section-header p {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
             margin: 0 auto;
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            top: 0;
-            left: 0;
-            z-index: -1;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-card:hover::before {
-            opacity: 0.05;
-        }
-        
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(42, 157, 143, 0.1);
-            color: var(--primary);
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover .feature-icon {
-            background: var(--primary);
-            color: white;
-            transform: rotateY(180deg);
-        }
-        
-        .feature-title {
-            font-size: 1.4rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-        
-        .feature-description {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        /* SERVICES SECTION */
-        .services {
-            background: #f9f9f9;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .services::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--primary);
-            border-radius: 50%;
-            top: -150px;
-            left: -150px;
-            opacity: 0.05;
-        }
-        
-        .services::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--secondary);
-            border-radius: 50%;
-            bottom: -150px;
-            right: -150px;
-            opacity: 0.05;
         }
         
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
         }
         
         .service-card {
-            background: white;
+            background-color: white;
             border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         
         .service-image {
@@ -519,7 +362,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: all 0.5s ease;
+            transition: transform 0.5s;
         }
         
         .service-card:hover .service-image img {
@@ -527,1513 +370,3215 @@
         }
         
         .service-content {
-            padding: 30px;
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
-        .service-tag {
-            display: inline-block;
-            padding: 5px 15px;
-            background: rgba(42, 157, 143, 0.1);
+        .service-content h3 {
             color: var(--primary);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
         }
         
-        .service-title {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-        
-        .service-description {
+        .service-content p {
             color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+        
+        .service-specs {
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.3rem;
+            color: #666;
+        }
+        
+        .spec-item i {
+            color: var(--primary);
+            font-size: 0.8rem;
         }
         
         .service-price {
-            font-size: 1.2rem;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        
-        .service-features {
-            margin-bottom: 20px;
-        }
-        
-        .service-feature {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .service-feature i {
-            color: var(--primary);
-        }
-        
-        .service-link {
-            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
             color: var(--dark);
-            font-weight: 600;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 5px;
-            transition: all 0.3s ease;
         }
         
-        .service-link:hover {
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+        
+        .service-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .add-to-cart {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #1a5c36;
+        }
+        
+        .service-rating {
+            color: var(--accent);
+            display: flex;
+        }
+        
+        .service-ribbon {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            transform: rotate(45deg);
+            background-color: var(--primary);
+            color: white;
+            padding: 0.3rem 2.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .service-ribbon.bestseller {
+            background-color: var(--danger);
+        }
+        
+        .service-ribbon.new {
+            background-color: var(--info);
+        }
+        
+        .view-details {
+            text-decoration: none;
             color: var(--primary);
-            gap: 10px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
         }
         
-        /* BUDGET SECTION */
-        .budget {
+        .view-details:hover {
+            color: #1a5c36;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: #f1f1f1;
+            padding: 5rem 1rem;
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-item h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .portfolio-item {
             position: relative;
             overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
         }
         
-        .pricing-tabs {
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 110, 73, 0.8);
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            margin-bottom: 40px;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            padding: 1rem;
+            text-align: center;
         }
         
-        .pricing-tab {
-            padding: 10px 30px;
-            background: white;
-            border: 1px solid #eee;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
         }
         
-        .pricing-tab:first-child {
-            border-radius: 50px 0 0 50px;
-        }
-        
-        .pricing-tab:last-child {
-            border-radius: 0 50px 50px 0;
-        }
-        
-        .pricing-tab.active {
-            background: var(--primary);
+        .portfolio-overlay h3 {
             color: white;
-            border-color: var(--primary);
+            margin-bottom: 0.5rem;
         }
         
-        .pricing-content {
-            display: none;
+        .portfolio-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
         
-        .pricing-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
+        .portfolio-btn {
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .portfolio-btn:hover {
+            background-color: #e6ac3c;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #f1f1f1;
+            padding: 5rem 1rem;
+        }
+        
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .quote-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: rgba(44, 110, 73, 0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 0.8rem;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 2rem;
         }
         
         .pricing-card {
-            background: white;
+            background-color: white;
             border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 40px 30px;
-            text-align: center;
-            border: 2px solid transparent;
-        }
-        
-        .pricing-card.popular {
-            border-color: var(--primary);
-        }
-        
-        .popular-badge {
-            position: absolute;
-            top: 20px;
-            right: -35px;
-            background: var(--primary);
-            color: white;
-            padding: 5px 40px;
-            transform: rotate(45deg);
-            font-size: 0.8rem;
-            font-weight: 600;
+            transition: transform 0.3s;
         }
         
         .pricing-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         
-        .pricing-title {
-            font-size: 1.5rem;
+        .pricing-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .pricing-card.popular .pricing-header {
+            background-color: var(--accent);
             color: var(--dark);
-            margin-bottom: 10px;
+            position: relative;
         }
         
-        .pricing-subtitle {
-            color: #666;
-            margin-bottom: 30px;
+        .popular-badge {
+            position: absolute;
+            top: 0;
+            right: 2rem;
+            background-color: var(--danger);
+            color: white;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .pricing-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
         
         .pricing-price {
             font-size: 2.5rem;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
         
-        .pricing-price::before {
-            content: 'Rp';
-            position: absolute;
+        .pricing-price span {
             font-size: 1rem;
-            top: 5px;
-            left: -25px;
-            font-weight: 600;
+            font-weight: normal;
         }
         
-        .pricing-price::after {
-            content: 'k';
-            position: absolute;
-            font-size: 1rem;
-            bottom: 5px;
-            right: -20px;
-            font-weight: 600;
+        .pricing-body {
+            padding: 2rem;
         }
         
         .pricing-features {
-            margin-bottom: 30px;
+            list-style: none;
+            margin-bottom: 2rem;
         }
         
-        .pricing-feature {
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            color: #666;
+            gap: 0.5rem;
         }
         
-        .pricing-feature i {
-            color: var(--primary);
+        .pricing-features li i {
+            color: var(--success);
         }
         
-        /* STRATEGI SECTION */
-        .strategy {
-            background: linear-gradient(135deg, var(--dark) 0%, #1a3540 100%);
+        .pricing-features li.unavailable i {
+            color: var(--danger);
+        }
+        
+        .pricing-features li.unavailable {
+            color: #aaa;
+            text-decoration: line-through;
+        }
+        
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            text-align: center;
+            background-color: var(--primary);
             color: white;
-            position: relative;
-            overflow: hidden;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
         }
         
-        .strategy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .pricing-btn:hover {
+            background-color: #1a5c36;
         }
         
-        .strategy-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
+        .pricing-card.popular .pricing-btn {
+            background-color: var(--accent);
+            color: var(--dark);
         }
         
-        .strategy-card::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: -1;
+        .pricing-card.popular .pricing-btn:hover {
+            background-color: #e6ac3c;
         }
         
-        .strategy-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .strategy-card:hover::before {
-            opacity: 0.1;
-        }
-        
-        .strategy-icon {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-        
-        .strategy-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .strategy-description {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-        }
-        
-        /* CONTACT SECTION */
+        /* Contact Section */
         .contact {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 50%;
-            background: var(--primary);
-            top: 0;
-            left: 0;
-            opacity: 0.03;
-            z-index: -1;
+            background-color: #f1f1f1;
+            padding: 5rem 1rem;
         }
         
         .contact-container {
-            display: flex;
-            gap: 50px;
-            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
         }
         
         .contact-info {
-            flex: 1;
-        }
-        
-        .contact-form-container {
-            flex: 1;
-            background: white;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-        
-        .contact-card {
             display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            flex-direction: column;
+            gap: 2rem;
         }
         
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
         }
         
-        .contact-card-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(42, 157, 143, 0.1);
+        .contact-icon {
+            font-size: 1.5rem;
             color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
         }
         
-        .contact-card-content h4 {
-            margin-bottom: 5px;
+        .contact-details h3 {
             color: var(--dark);
+            margin-bottom: 0.5rem;
         }
         
-        .contact-card-content p {
+        .contact-details p {
             color: #666;
         }
         
-        .contact-form-title {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 20px;
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 0.5rem;
             color: var(--dark);
             font-weight: 500;
         }
         
         .form-control {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #eee;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            transition: border-color 0.3s;
         }
         
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
         }
         
         textarea.form-control {
+            height: 150px;
             resize: vertical;
-            min-height: 120px;
         }
         
-        /* FOOTER */
-        .footer {
-            background: var(--dark);
-            color: white;
-            padding: 70px 0 20px;
+        /* Shopping Cart */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s, width 0s 0.3s;
+        }
+        
+        .cart-overlay.active {
+            width: 100%;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+        
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1002;
+            transition: right 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cart-sidebar.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cart-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-cart:hover {
+            color: var(--danger);
+        }
+        
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
             position: relative;
-            overflow: hidden;
         }
         
-        .footer::before {
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            color: var(--dark);
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .quantity-btn {
+            background-color: #eee;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #ddd;
+        }
+        
+        .remove-item {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .remove-item:hover {
+            color: var(--danger);
+        }
+        
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .cart-total-value {
+            color: var(--primary);
+        }
+        
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #1a5c36;
+        }
+        
+        .cart-empty {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+        }
+        
+        .cart-empty i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Checkout Modal */
+        .checkout-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1003;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0s 0.3s;
+        }
+        
+        .checkout-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s;
+        }
+        
+        .checkout-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideUp 0.5s;
+        }
+        
+        .checkout-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 1;
+        }
+        
+        .checkout-header h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .close-checkout {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-checkout:hover {
+            color: var(--danger);
+        }
+        
+        .checkout-body {
+            padding: 1.5rem;
+        }
+        
+        .checkout-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .checkout-summary {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+        }
+        
+        .summary-header {
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #ddd;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        .summary-total-value {
+            color: var(--primary);
+        }
+        
+        .checkout-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .back-to-cart {
+            color: var(--primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .back-to-cart:hover {
+            color: #1a5c36;
+        }
+        
+        .place-order-btn {
+            padding: 0.8rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .place-order-btn:hover {
+            background-color: #1a5c36;
+        }
+        
+        /* Discount Coupon */
+        .discount-coupon {
+            margin-top: 1.5rem;
+        }
+        
+        .coupon-header {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .coupon-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .coupon-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .coupon-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .coupon-btn:hover {
+            background-color: #e6ac3c;
+        }
+        
+        .applied-coupon {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--success);
+        }
+        
+        .remove-coupon {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .remove-coupon:hover {
+            color: var(--danger);
+        }
+        
+        /* Login Modal */
+        .auth-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1004;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0s 0.3s;
+        }
+        
+        .auth-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s;
+        }
+        
+        .auth-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideUp 0.5s;
+            position: relative;
+        }
+        
+        .auth-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .auth-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .auth-header p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        
+        .close-auth {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-auth:hover {
+            color: var(--accent);
+        }
+        
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            background-color: #f9f9f9;
+            color: #666;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .auth-tab.active {
+            background-color: white;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .auth-forms {
+            padding: 2rem;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .form-divider::before {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--primary);
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #eee;
+            z-index: 1;
+        }
+        
+        .form-divider span {
+            position: relative;
+            background-color: white;
+            padding: 0 1rem;
+            color: #999;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+        
+        .social-login {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-btn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .google-btn {
+            color: #DB4437;
+        }
+        
+        .google-btn:hover {
+            background-color: #faf0ef;
+            border-color: #DB4437;
+        }
+        
+        .facebook-btn {
+            color: #4267B2;
+        }
+        
+        .facebook-btn:hover {
+            background-color: #f0f2f7;
+            border-color: #4267B2;
+        }
+        
+        .login-btn, .register-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .login-btn:hover, .register-btn:hover {
+            background-color: #1a5c36;
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-top: -1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .forgot-password a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .forgot-password a:hover {
+            color: #1a5c36;
+            text-decoration: underline;
+        }
+        
+        .register-login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .register-login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .register-login-link a:hover {
+            color: #1a5c36;
+            text-decoration: underline;
+        }
+        
+        /* User Profile */
+        .user-profile {
+            position: relative;
+        }
+        
+        .profile-img {
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
-            top: -150px;
-            right: -150px;
-            opacity: 0.05;
+            cursor: pointer;
+            border: 2px solid var(--primary);
+        }
+        
+        .profile-dropdown {
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background-color: white;
+            border-radius: 5px;
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s;
+        }
+        
+        .user-profile:hover .profile-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .profile-header {
+            padding: 0 1rem 1rem;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+        
+        .profile-name {
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        
+        .profile-email {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .profile-links {
+            list-style: none;
+            padding: 0.5rem 0;
+        }
+        
+        .profile-links li a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            color: #666;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .profile-links li a:hover {
+            background-color: #f9f9f9;
+            color: var(--primary);
+        }
+        
+        .profile-links li a i {
+            font-size: 1rem;
+            color: var(--primary);
+        }
+        
+        .profile-footer {
+            padding-top: 0.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            color: var(--danger);
+            text-decoration: none;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .logout-btn:hover {
+            background-color: #fdf1f2;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 1rem 2rem;
         }
         
         .footer-container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
+            gap: 3rem;
         }
         
         .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .footer-logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), rgba(42, 157, 143, 0.5));
-            color: white;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 700;
-        }
-        
-        .footer-logo-text {
-            font-weight: 700;
             font-size: 1.5rem;
-            color: white;
-        }
-        
-        .footer-logo-text span {
-            color: var(--primary);
-        }
-        
-        .footer-about {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        
-        .footer-social {
+            font-weight: 700;
+            margin-bottom: 1rem;
             display: flex;
-            gap: 15px;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .footer-social a {
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .footer-about p {
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            background-color: rgba(255,255,255,0.1);
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.05);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s;
         }
         
-        .footer-social a:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
+        .social-link:hover {
+            background-color: var(--accent);
         }
         
-        .footer-heading {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+        .footer-links h3, .footer-contact h3, .footer-newsletter h3 {
+            color: white;
+            margin-bottom: 1.5rem;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 0.5rem;
+            font-size: 1.2rem;
         }
         
-        .footer-heading::after {
+        .footer-links h3::after, .footer-contact h3::after, .footer-newsletter h3::after {
             content: '';
             position: absolute;
-            width: 50px;
-            height: 2px;
-            background: var(--primary);
             bottom: 0;
             left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
         }
         
-        .footer-links {
+        .footer-links ul {
             list-style: none;
         }
         
         .footer-links li {
-            margin-bottom: 15px;
+            margin-bottom: 0.8rem;
         }
         
         .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
+            color: #bbb;
             text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            transition: color 0.3s;
+            font-size: 0.9rem;
         }
         
         .footer-links a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
+            color: var(--accent);
         }
         
-        .footer-contact-item {
+        .contact-item {
             display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            color: rgba(255, 255, 255, 0.7);
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #bbb;
+            font-size: 0.9rem;
         }
         
-        .footer-contact-item i {
-            color: var(--primary);
+        .newsletter-text {
+            color: #bbb;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        .newsletter-input::placeholder {
+            color: #bbb;
+        }
+        
+        .newsletter-btn {
+            padding: 0.8rem 1rem;
+            background-color: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: #e6ac3c;
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
         .copyright {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
+            color: #bbb;
+            font-size: 0.9rem;
         }
         
-        /* RESPONSIVE */
+        .payment-methods {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .payment-icon {
+            background-color: white;
+            width: 40px;
+            height: 25px;
+            border-radius: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Blog Section */
+        .blog {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .blog-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+        
+        .blog-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-content h3 {
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            line-height: 1.4;
+        }
+        
+        .blog-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .blog-stats {
+            display: flex;
+            gap: 1rem;
+            color: #777;
+            font-size: 0.85rem;
+        }
+        
+        .view-all-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 5rem 1rem;
+            background-color: #f1f1f1;
+        }
+        
+        .team-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding-top: 2rem;
+        }
+        
+        .team-member {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .member-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .team-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+        
+        .member-social {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            transition: bottom 0.3s;
+        }
+        
+        .team-member:hover .member-social {
+            bottom: 0;
+        }
+        
+        .member-social a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: white;
+            color: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .member-social a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .member-info {
+            padding: 1.5rem;
+        }
+        
+        .member-info h3 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-size: 1.3rem;
+        }
+        
+        .member-role {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .member-bio {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .member-skills span {
+            background-color: #f1f1f1;
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        /* Interactive Demo Section */
+        .demo-section {
+            padding: 5rem 1rem;
+            background-color: #f8f9fa;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 2rem;
+        }
+        
+        .demo-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .demo-tab {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #666;
+        }
+        
+        .demo-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .game-container {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .game-frame {
+            display: none;
+        }
+        
+        .game-frame.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .game-frame.active {
+                flex-direction: row;
+            }
+        }
+        
+        .game-content {
+            flex: 2;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f1f1f1;
+            min-height: 450px;
+        }
+        
+        .game-info {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+        }
+        
+        .game-info h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .game-info p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .game-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .game-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .game-meta span i {
+            color: var(--accent);
+        }
+        
+        /* Puzzle Game Styles */
+        .puzzle-game {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .puzzle-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 5px;
+            width: 300px;
+            height: 300px;
+            background-color: #ddd;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        
+        .puzzle-piece {
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .puzzle-piece:hover:not(.empty) {
+            transform: scale(0.95);
+        }
+        
+        .puzzle-piece.empty {
+            background-color: transparent;
+        }
+        
+        .puzzle-controls, .game-controls {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .game-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .game-btn:hover {
+            background-color: #1a5c36;
+        }
+        
+        .game-stats {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .game-stats span {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        /* Space Shooter Styles */
+        #shooter-canvas {
+            background-color: #000;
+            border-radius: 5px;
+        }
+        
+        /* Quiz Game Styles */
+        .quiz-game {
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .quiz-question {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .quiz-question h4 {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .quiz-option {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .quiz-option:hover {
+            background-color: #e9ecef;
+            border-color: var(--primary);
+        }
+        
+        .quiz-option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        /* Video Testimonials */
+        .video-testimonials {
+            padding: 5rem 1rem;
+            background-color: white;
+        }
+        
+        .video-grid {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .video-testimonial {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .video-testimonial:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+        }
+        
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .video-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .video-testimonial:hover .video-placeholder img {
+            transform: scale(1.1);
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: background-color 0.3s;
+        }
+        
+        .play-button:hover {
+            background-color: var(--accent);
+        }
+        
+        .video-content {
+            padding: 1.5rem;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .client-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .client-info h3 {
+            color: var(--dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .client-info p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        .video-description {
+            color: #555;
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .video-project-info {
+            display: flex;
+            justify-content: space-between;
+            color: #777;
+            font-size: 0.85rem;
+        }
+        
+        .video-project-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .video-project-info i {
+            color: var(--primary);
+        }
+        
+        /* Video Modal */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1005;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0s 0.3s;
+        }
+        
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s;
+        }
+        
+        .video-modal-content {
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        .close-video {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-video:hover {
+            color: var(--accent);
+        }
+        
+        /* Social Media Feed */
+        .social-feed {
+            padding: 5rem 1rem;
+            background-color: #f8f9fa;
+        }
+        
+        .social-container {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+        }
+        
+        .social-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .social-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-tab {
+            background: none;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .social-tab i {
+            font-size: 1.2rem;
+        }
+        
+        .social-tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .follow-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .follow-btn:hover {
+            background-color: #e6ac3c;
+        }
+        
+        .social-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .social-grid.active {
+            display: grid;
+        }
+        
+        .social-post {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .social-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Instagram Post Styles */
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        
+        .post-profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .post-username {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .post-location, .post-date {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        .post-image {
+            width: 100%;
+            height: 280px;
+        }
+        
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .post-actions {
+            display: flex;
+            padding: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .instagram-post .post-actions {
+            justify-content: space-between;
+        }
+        
+        .post-likes, .post-comments, .post-retweets {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .post-caption {
+            padding: 0 1rem 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #555;
+        }
+        
+        /* Twitter Post Styles */
+        .twitter-post {
+            padding-bottom: 1rem;
+        }
+        
+        .twitter-post .post-content {
+            padding: 0 1rem 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        .twitter-post .post-actions {
+            padding: 0 1rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        /* YouTube Post Styles */
+        .post-video {
+            position: relative;
+            width: 100%;
+            height: 180px;
+        }
+        
+        .post-video img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+        
+        .post-video .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0,0,0,0.7);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .post-video:hover .play-button {
+            opacity: 1;
+        }
+        
+        .youtube-post .post-info {
+            padding: 1rem;
+        }
+        
+        .video-title {
+            color: var(--dark);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        
+        .video-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        
+        .channel-name {
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .video-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1) rotate(15deg); }
+            50% { transform: scale(1.1) rotate(15deg); }
+            100% { transform: scale(1) rotate(15deg); }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Adjustments */
         @media (max-width: 992px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .contact-container {
+            .navbar {
                 flex-direction: column;
+                padding: 1rem;
             }
             
-            .contact-info {
-                width: 100%;
+            .nav-links {
+                margin: 1rem 0;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
-            .contact-form-container {
+            .discount-badge {
+                right: 10px;
+                width: 60px;
+                height: 60px;
+                font-size: 0.8rem;
+            }
+            
+            .discount-badge span:first-child {
+                font-size: 1.2rem;
+            }
+            
+            .cart-sidebar {
                 width: 100%;
+                right: -100%;
             }
         }
         
         @media (max-width: 768px) {
-            .navbar-container {
-                padding: 0 20px;
+            .hero h1 {
+                font-size: 2.2rem;
             }
             
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: white;
+            .cta-buttons {
                 flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-                transform: translateY(-200%);
-                transition: all 0.3s ease;
-                z-index: 999;
+                gap: 1rem;
             }
             
-            .nav-links.active {
-                transform: translateY(0);
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-container {
+            .footer-bottom {
                 flex-direction: column;
+                gap: 1rem;
                 text-align: center;
-                padding: 40px 20px;
             }
             
-            .hero-buttons {
-                justify-content: center;
+            .filter-container {
+                flex-direction: column;
+                padding: 0 2rem;
             }
             
-            .hero-image {
-                margin-top: 50px;
-                justify-content: center;
-            }
-            
-            .section {
-                padding: 60px 20px;
+            .filter-btn {
+                width: 100%;
             }
         }
         
         @media (max-width: 576px) {
-            .hero-img-container {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .section-title {
+            .section-header h2 {
                 font-size: 1.8rem;
             }
             
-            .pricing-tabs {
-                flex-direction: column;
-                gap: 10px;
+            .pricing-card {
+                margin-bottom: 2rem;
             }
             
-            .pricing-tab {
-                border-radius: 50px;
+            .checkout-footer {
+                flex-direction: column;
+                gap: 1rem;
             }
-        }
-        
-        /* ANIMATIONS */
-        .fadeIn {
-            animation: fadeIn 1s ease;
-        }
-        
-        .fadeInUp {
-            animation: fadeInUp 1s ease;
-        }
-        
-        .fadeInLeft {
-            animation: fadeInLeft 1s ease;
-        }
-        
-        .fadeInRight {
-            animation: fadeInRight 1s ease;
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
+            
+            .place-order-btn {
+                width: 100%;
+            }
+            
+            .social-login {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="navbar-container">
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
             <a href="#" class="logo">
-                <div class="logo-icon">VD</div>
-                <div class="logo-text">VIAN<span>-DEV</span></div>
+                <div class="logo-icon"><i class="fas fa-gamepad"></i></div>
+                <div class="logo-text">VIAN-DEV</div>
             </a>
-            <div class="nav-links" id="navLinks">
-                <a href="#features">Tantangan</a>
-                <a href="#services">Produk & Jasa</a>
-                <a href="#budget">Budget</a>
-                <a href="#strategy">Strategi</a>
-                <a href="#contact">Kontak</a>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- HERO SECTION -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-content fadeInLeft">
-                <h1 class="hero-title">Jasa Pembuatan <span>Game Indie</span> & Aset</h1>
-                <p class="hero-subtitle">Kami membantu developer indie, instansi edukasi, dan brand untuk menciptakan game berkualitas, aset 2D/3D, porting platform, dan solusi monetisasi dengan pendekatan yang optimal.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Hubungi Kami
-                    </a>
-                    <a href="#services" class="btn btn-outline">
-                        <i class="fas fa-info-circle"></i> Pelajari Layanan
-                    </a>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#pricing">Paket Harga</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            
+            <div class="nav-buttons">
+                <button class="cart-btn" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <div id="userSection">
+                    <button class="primary-btn" id="loginBtn">Login</button>
                 </div>
             </div>
-            <div class="hero-image fadeInRight">
-                <div class="hero-img-container floating">
-                    <div class="hero-blob"></div>
-                    <div class="hero-illustration">
-                        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                            <g transform="translate(250, 250)">
-                                <path d="M68.2,-97.4C92.4,-88.5,118.4,-76.9,129.6,-56.3C140.8,-35.7,137.2,-6.2,129.5,21.1C121.7,48.4,109.7,73.5,90.5,93.8C71.3,114.1,44.9,129.5,17.8,131.9C-9.3,134.3,-37.1,123.6,-64.8,110.6C-92.5,97.5,-120,82,-133,57.5C-146,33,-144.6,-0.5,-132.9,-27.5C-121.2,-54.6,-99.3,-75.3,-76.1,-84.7C-52.9,-94.1,-28.5,-92.1,-3.6,-87.6C21.4,-83.1,44,-106.3,68.2,-97.4Z" fill="#2A9D8F" />
-                            </g>
-                            
-                            <!-- Game controller -->
-                            <g transform="translate(180, 220) scale(0.8)">
-                                <rect x="0" y="0" width="180" height="100" rx="20" fill="#264653" />
-                                <circle cx="50" cy="50" r="20" fill="#E9C46A" />
-                                <circle cx="130" cy="50" r="20" fill="#E9C46A" />
-                                <rect x="85" y="40" width="10" height="20" rx="5" fill="#E9C46A" />
-                                <rect x="80" y="45" width="20" height="10" rx="5" fill="#E9C46A" />
-                            </g>
-                            
-                            <!-- 3D model icon -->
-                            <g transform="translate(320, 190) scale(0.6)">
-                                <polygon points="50,0 100,25 50,50 0,25" fill="#E76F51" />
-                                <polygon points="0,25 50,50 50,100 0,75" fill="#F4A261" />
-                                <polygon points="50,50 100,25 100,75 50,100" fill="#E9C46A" />
-                            </g>
-                            
-                            <!-- Code brackets -->
-                            <g transform="translate(150, 150) scale(0.7)">
-                                <path d="M30,20 L0,50 L30,80" stroke="#264653" stroke-width="10" fill="none" />
-                                <path d="M70,20 L100,50 L70,80" stroke="#264653" stroke-width="10" fill="none" />
-                            </g>
-                        </svg>
+        </nav>
+    </header>
+
+    
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Kembangkan Game Impian Anda</h1>
+            <p>VIAN-DEV adalah studio pengembangan game dan layanan digital dengan kualitas terbaik untuk menghadirkan pengalaman yang tak terlupakan.</p>
+            <div class="cta-buttons">
+                <button class="accent-btn">Lihat Layanan</button>
+                <button class="secondary-btn">Hubungi Kami</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Promo Banner -->
+    <div class="promo-banner">
+        <h3>Promo Spesial Akhir Tahun!</h3>
+        <p>Dapatkan diskon hingga 25% untuk semua layanan pengembangan game sampai 31 Desember 2025</p>
+        <div class="discount-badge">
+            <span>25%</span>
+            <span>OFF</span>
+        </div>
+    </div>
+    
+    <!-- Category Filter -->
+    <div class="category-filter">
+        <div class="filter-container">
+            <button class="filter-btn active" data-category="all">Semua</button>
+            <button class="filter-btn" data-category="game">Game Development</button>
+            <button class="filter-btn" data-category="mobile">Mobile Apps</button>
+            <button class="filter-btn" data-category="asset">3D Assets</button>
+            <button class="filter-btn" data-category="education">Edukasi</button>
+            <button class="filter-btn" data-category="training">Pelatihan</button>
+        </div>
+    </div>
+    
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <h2>Layanan Kami</h2>
+            <p>Kami menawarkan berbagai layanan pengembangan game dan solusi digital untuk memenuhi kebutuhan Anda</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card" data-category="game">
+                <div class="service-ribbon bestseller">Bestseller</div>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80" alt="Game Development">
+                </div>
+                <div class="service-content">
+                    <h3>Game Indie Premium</h3>
+                    <p>Pengembangan game indie dengan kualitas setara AAA untuk berbagai platform termasuk PC, mobile, dan konsol.</p>
+                    <div class="service-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Multi-platform (PC, Mobile, Konsol)</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Grafis HD Premium</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Backend & Cloud Support</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Dukungan 12 bulan</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="original-price">Rp 150 juta</span>
+                        Rp 112.5 juta
+                    </div>
+                    <div class="service-footer">
+                        <button class="add-to-cart" data-id="1" data-name="Game Indie Premium" data-price="112500000" data-category="game" data-image="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80">
+                            <i class="fas fa-cart-plus"></i> Tambah
+                        </button>
+                        <div class="service-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card" data-category="asset">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=600&q=80" alt="3D Assets">
+                </div>
+                <div class="service-content">
+                    <h3>Pembuatan Aset 3D</h3>
+                    <p>Jasa pembuatan aset 3D berkualitas tinggi untuk game, animasi, dan kebutuhan visualisasi lainnya.</p>
+                    <div class="service-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Model 3D High-Poly</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Texturing & Materials</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Rigging & Animation Ready</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Format Ekspor Beragam</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="original-price">Rp 10 juta</span>
+                        Rp 7.5 juta
+                    </div>
+                    <div class="service-footer">
+                        <button class="add-to-cart" data-id="2" data-name="Pembuatan Aset 3D" data-price="7500000" data-category="asset" data-image="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=600&q=80">
+                            <i class="fas fa-cart-plus"></i> Tambah
+                        </button>
+                        <div class="service-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card" data-category="education">
+                <div class="service-ribbon new">Baru</div>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1594904351111-a072f80b1a71?auto=format&fit=crop&w=600&q=80" alt="Educational Games">
+                </div>
+                <div class="service-content">
+                    <h3>Game Edukasi K-13</h3>
+                    <p>Pengembangan game edukasi berbasis kurikulum K-13 untuk meningkatkan pengalaman belajar siswa.</p>
+                    <div class="service-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Berbasis Kurikulum K-13</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Multi-Subject Support</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Sistem Evaluasi Terintegrasi</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Dashboard Admin & Guru</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="original-price">Rp 75 juta</span>
+                        Rp 56.25 juta
+                    </div>
+                    <div class="service-footer">
+                        <button class="add-to-cart" data-id="3" data-name="Game Edukasi K-13" data-price="56250000" data-category="education" data-image="https://images.unsplash.com/photo-1594904351111-a072f80b1a71?auto=format&fit=crop&w=600&q=80">
+                            <i class="fas fa-cart-plus"></i> Tambah
+                        </button>
+                        <div class="service-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card" data-category="mobile">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1517292987719-0369a794ec0f?auto=format&fit=crop&w=600&q=80" alt="Mobile Apps">
+                </div>
+                <div class="service-content">
+                    <h3>Aplikasi Mobile</h3>
+                    <p>Pengembangan aplikasi mobile interaktif dan responsif untuk platform Android dan iOS.</p>
+                    <div class="service-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Android & iOS Support</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>UI/UX Design Premium</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>API Integration</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Dukungan & Maintenance</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="original-price">Rp 50 juta</span>
+                        Rp 37.5 juta
+                    </div>
+                    <div class="service-footer">
+                        <button class="add-to-cart" data-id="4" data-name="Aplikasi Mobile" data-price="37500000" data-category="mobile" data-image="https://images.unsplash.com/photo-1517292987719-0369a794ec0f?auto=format&fit=crop&w=600&q=80">
+                            <i class="fas fa-cart-plus"></i> Tambah
+                        </button>
+                        <div class="service-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card" data-category="training">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1561736778-92e52a7769ef?auto=format&fit=crop&w=600&q=80" alt="Workshop">
+                </div>
+                <div class="service-content">
+                    <h3>Workshop & Pelatihan</h3>
+                    <p>Workshop dan pelatihan game development, programming, dan desain untuk berbagai tingkat keahlian.</p>
+                    <div class="service-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Materi Komprehensif</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Sertifikat Internasional</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Hands-on Project</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Portofolio Showcase</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="original-price">Rp 15 juta</span>
+                        Rp 11.25 juta
+                    </div>
+                    <div class="service-footer">
+                        <button class="add-to-cart" data-id="5" data-name="Workshop & Pelatihan" data-price="11250000" data-category="training" data-image="https://images.unsplash.com/photo-1561736778-92e52a7769ef?auto=format&fit=crop&w=600&q=80">
+                            <i class="fas fa-cart-plus"></i> Tambah
+                        </button>
+                        <div class="service-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card" data-category="game">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="Custom Projects">
+                </div>
+                <div class="service-content">
+                    <h3>Proyek Kustom</h3>
+                    <p>Layanan pengembangan proyek kustom sesuai dengan kebutuhan spesifik klien untuk game dan aplikasi.</p>
+                    <div class="service-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Custom Development</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Konsultasi Menyeluruh</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Full Ownership Rights</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Support Jangka Panjang</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="original-price">Rp 100 juta</span>
+                        Rp 75 juta
+                    </div>
+                    <div class="service-footer">
+                        <button class="add-to-cart" data-id="6" data-name="Proyek Kustom" data-price="75000000" data-category="game" data-image="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80">
+                            <i class="fas fa-cart-plus"></i> Tambah
+                        </button>
+                        <div class="service-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card" data-category="mobile">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80" alt="AR/VR Development">
+                </div>
+                <div class="service-content">
+                    <h3>Pengembangan AR/VR</h3>
+                    <p>Solusi augmented reality dan virtual reality untuk kebutuhan gaming, edukasi, dan industri.</p>
+                    <div class="service-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>AR/VR Experience</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Multi-platform Support</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>3D Modeling & Animation</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Interactive Elements</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="original-price">Rp 85 juta</span>
+                        Rp 63.75 juta
+                    </div>
+                    <div class="service-footer">
+                        <button class="add-to-cart" data-id="7" data-name="Pengembangan AR/VR" data-price="63750000" data-category="mobile" data-image="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80">
+                            <i class="fas fa-cart-plus"></i> Tambah
+                        </button>
+                        <div class="service-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card" data-category="education">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?auto=format&fit=crop&w=600&q=80" alt="Learning Management System">
+                </div>
+                <div class="service-content">
+                    <h3>Learning Management System</h3>
+                    <p>Sistem manajemen pembelajaran digital terintegrasi dengan gamifikasi untuk meningkatkan engagement.</p>
+                    <div class="service-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Sistem Gamifikasi</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Analytics & Reporting</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Mobile & Desktop Access</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Content Management</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="original-price">Rp 60 juta</span>
+                        Rp 45 juta
+                    </div>
+                    <div class="service-footer">
+                        <button class="add-to-cart" data-id="8" data-name="Learning Management System" data-price="45000000" data-category="education" data-image="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?auto=format&fit=crop&w=600&q=80">
+                            <i class="fas fa-cart-plus"></i> Tambah
+                        </button>
+                        <div class="service-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card" data-category="asset">
+                <div class="service-ribbon">Hot</div>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1596496181871-9681eacf9764?auto=format&fit=crop&w=600&q=80" alt="Character Design">
+                </div>
+                <div class="service-content">
+                    <h3>Character Design Pack</h3>
+                    <p>Paket desain karakter lengkap untuk game dan animasi, termasuk concept art, model 3D, dan animasi.</p>
+                    <div class="service-specs">
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Concept Art</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>3D Modeling & Texturing</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Rigging & Animation Set</span>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Source Files Included</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="original-price">Rp 20 juta</span>
+                        Rp 15 juta
+                    </div>
+                    <div class="service-footer">
+                        <button class="add-to-cart" data-id="9" data-name="Character Design Pack" data-price="15000000" data-category="asset" data-image="https://images.unsplash.com/photo-1596496181871-9681eacf9764?auto=format&fit=crop&w=600&q=80">
+                            <i class="fas fa-cart-plus"></i> Tambah
+                        </button>
+                        <div class="service-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- FEATURES SECTION -->
-    <section class="section features" id="features">
-        <div class="section-container">
+    
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="section-header">
+            <h2>Tim Kami</h2>
+            <p>Bertemu dengan talenta-talenta kreatif di balik proyek-proyek kami</p>
+        </div>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Budi Santoso">
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3>Budi Santoso</h3>
+                    <p class="member-role">CEO & Lead Game Designer</p>
+                    <p class="member-bio">Dengan pengalaman 10+ tahun di industri game, Budi telah mengerjakan lebih dari 30 judul game untuk berbagai platform.</p>
+                    <div class="member-skills">
+                        <span>Game Design</span>
+                        <span>Unity</span>
+                        <span>Unreal Engine</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Diana Putri">
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3>Diana Putri</h3>
+                    <p class="member-role">Lead 3D Artist</p>
+                    <p class="member-bio">Spesialis dalam pemodelan karakter dan environment 3D dengan fokus pada detail dan optimisasi untuk berbagai platform.</p>
+                    <div class="member-skills">
+                        <span>Blender</span>
+                        <span>Maya</span>
+                        <span>ZBrush</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Rizky Ardian">
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3>Rizky Ardian</h3>
+                    <p class="member-role">Senior Game Developer</p>
+                    <p class="member-bio">Programmer handal dengan keahlian dalam pengembangan game berbasis Unity dan sistem backend yang kompleks.</p>
+                    <div class="member-skills">
+                        <span>C#</span>
+                        <span>Unity</span>
+                        <span>Node.js</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Maya Wijaya">
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3>Maya Wijaya</h3>
+                    <p class="member-role">UI/UX Designer</p>
+                    <p class="member-bio">Ahli dalam menciptakan antarmuka yang intuitif dan user-friendly untuk meningkatkan pengalaman bermain game.</p>
+                    <div class="member-skills">
+                        <span>Figma</span>
+                        <span>Adobe XD</span>
+                        <span>UI Animation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
             <div class="section-header">
-                <div class="section-subtitle">Tantangan</div>
-                <h2 class="section-title">Tantangan Dalam Pasar Game Indie</h2>
-                <p class="section-description">Pengembangan game indie memiliki berbagai tantangan yang perlu diatasi untuk mencapai kesuksesan. Kami memahami tantangan tersebut dan siap membantu Anda menghadapinya.</p>
+                <h2>Mengapa Memilih Kami</h2>
+                <p>VIAN-DEV menawarkan solusi terbaik dengan keunggulan yang tidak dimiliki kompetitor</p>
             </div>
             
             <div class="features-grid">
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-item">
                     <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-medal"></i>
                     </div>
-                    <h3 class="feature-title">Kompetisi Ketat</h3>
-                    <p class="feature-description">Pasar game indie sangat kompetitif dengan ribuan game baru dirilis setiap bulan. Dibutuhkan strategi dan kualitas untuk menonjol di antara kompetitor.</p>
+                    <h3>Kualitas Premium</h3>
+                    <p>Game dan aplikasi dengan kualitas setara produk AAA untuk memastikan pengalaman terbaik.</p>
                 </div>
                 
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-item">
                     <div class="feature-icon">
-                        <i class="fas fa-coins"></i>
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <h3 class="feature-title">Keterbatasan Dana</h3>
-                    <p class="feature-description">Budget terbatas seringkali menjadi kendala utama dalam pengembangan game indie yang berkualitas. Kami membantu mengoptimalkan penggunaan dana Anda.</p>
+                    <h3>Tepat Waktu</h3>
+                    <p>Komitmen untuk menyelesaikan proyek sesuai dengan jadwal yang telah disepakati.</p>
                 </div>
                 
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="feature-title">Desain Game Optimal</h3>
-                    <p class="feature-description">Merancang game yang menarik dan optimal membutuhkan keseimbangan antara gameplay, grafis, dan performa teknis agar dapat dinikmati oleh pemain.</p>
-                </div>
-                
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-item">
                     <div class="feature-icon">
                         <i class="fas fa-hand-holding-usd"></i>
                     </div>
-                    <h3 class="feature-title">Pendapatan Konsisten</h3>
-                    <p class="feature-description">Menghasilkan pendapatan yang konsisten dari game indie merupakan tantangan tersendiri yang membutuhkan strategi monetisasi yang tepat.</p>
+                    <h3>Harga Bersaing</h3>
+                    <p>Penawaran harga yang kompetitif dengan kualitas yang tidak dikompromikan.</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Support Berkelanjutan</h3>
+                    <p>Layanan dukungan teknis jangka panjang untuk semua produk dan layanan kami.</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- SERVICES SECTION -->
-    <section class="section services" id="services">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Produk & Jasa</div>
-                <h2 class="section-title">Layanan Game Development Kami</h2>
-                <p class="section-description">Kami menyediakan berbagai layanan pengembangan game dan aset yang dapat disesuaikan dengan kebutuhan dan budget Anda.</p>
-            </div>
-            
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-image">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMjAwIj48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2YyZjJmMiIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48cmVjdCB4PSIxMDAiIHk9IjUwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMkE5RDhGIi8+PHRleHQgeD0iMjUwIiB5PSIxMTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkdhbWUgSW5kaWU8L3RleHQ+PC9nPjwvc3ZnPg==" alt="Game Indie">
-                    </div>
-                    <div class="service-content">
-                        <div class="service-tag">Pengembangan</div>
-                        <h3 class="service-title">Jasa Pembuatan Game Indie</h3>
-                        <p class="service-description">Layanan pengembangan game indie lengkap dari konsep, desain, programming, testing hingga publishing.</p>
-                        <div class="service-price">Mulai dari Rp 6 Juta</div>
-                        <div class="service-features">
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Unity / Godot Engine</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Game Design Document</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Testing & Bug Fixing</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Publishing Support</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="service-link">Konsultasi Sekarang <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-image">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMjAwIj48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2YyZjJmMiIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48cG9seWdvbiBwb2ludHM9IjI1MCw1MCAzNTAsMTAwIDI1MCwxNTAgMTUwLDEwMCIgZmlsbD0iI0U3NkY1MSIvPjx0ZXh0IHg9IjI1MCIgeT0iMjAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMzMzMiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkFzZXQgM0Q8L3RleHQ+PC9nPjwvc3ZnPg==" alt="3D Assets">
-                    </div>
-                    <div class="service-content">
-                        <div class="service-tag">Aset</div>
-                        <h3 class="service-title">Pembuatan Model 3D & Aset</h3>
-                        <p class="service-description">Pembuatan aset 2D/3D berkualitas untuk game, termasuk karakter, environment, UI, dan animasi.</p>
-                        <div class="service-price">Mulai dari Rp 300 Ribu</div>
-                        <div class="service-features">
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Character Modeling</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Environment Assets</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Animation & Rigging</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>UI/UX Elements</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="service-link">Pesan Aset <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-image">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMjAwIj48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2YyZjJmMiIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj48cmVjdCB4PSIxNTAiIHk9IjYwIiB3aWR0aD0iODAiIGhlaWdodD0iMTIwIiByeD0iMTAiIGZpbGw9IiMyNjQ2NTMiLz48cmVjdCB4PSIyNzAiIHk9IjQwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjgwIiByeD0iNSIgZmlsbD0iIzI2NDY1MyIvPjxwYXRoIGQ9Ik0yMzAsMTEwIEwyNzAsMTEwIiBzdHJva2U9IiNFOUM0NkEiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWRhc2hhcnJheT0iNSIvPjwvZz48L3N2Zz4=" alt="Porting">
-                    </div>
-                    <div class="service-content">
-                        <div class="service-tag">Porting</div>
-                        <h3 class="service-title">Porting Android/PC</h3>
-                        <p class="service-description">Layanan porting game dari Android ke PC atau sebaliknya dengan optimasi performa dan kontrol.</p>
-                        <div class="service-price">Mulai dari Rp 2 Juta</div>
-                        <div class="service-features">
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Optimasi Performa</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Konfigurasi Input</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Penyesuaian UI</span>
-                            </div>
-                            <div class="service-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Testing Multi-platform</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="service-link">Diskusikan Proyek <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- BUDGET SECTION -->
-    <section class="section budget" id="budget">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Budget / Dana Awal</div>
-                <h2 class="section-title">Paket Harga Layanan</h2>
-                <p class="section-description">Kami menawarkan pilihan paket dengan harga yang kompetitif untuk memenuhi kebutuhan pengembangan game Anda.</p>
-            </div>
-            
-            <div class="pricing-tabs">
-                <div class="pricing-tab active" data-tab="game">Game Development</div>
-                <div class="pricing-tab" data-tab="asset">Aset & Model</div>
-                <div class="pricing-tab" data-tab="porting">Porting</div>
-            </div>
-            
-            <div class="pricing-content active" id="game-pricing">
-                <div class="pricing-grid">
-                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="pricing-title">Digital PC Dev</h3>
-                        <p class="pricing-subtitle">Game PC Sederhana</p>
-                        <div class="pricing-price">6000-8000</div>
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>1-3 Level/Stage</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Gameplay Dasar</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Aset Standard</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Testing Dasar</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="btn btn-primary">Pilih Paket</a>
-                    </div>
-                    
-                    <div class="pricing-card popular" data-aos="fade-up" data-aos-delay="200">
-                        <div class="popular-badge">Populer</div>
-                        <h3 class="pricing-title">Mobile Dev</h3>
-                        <p class="pricing-subtitle">Game Android/iOS</p>
-                        <div class="pricing-price">5000-7000</div>
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>2-4 Level/Stage</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Touch Controls</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Integrasi Ads Dasar</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Publishing di PlayStore</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="btn btn-primary">Pilih Paket</a>
-                    </div>
-                    
-                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
-                        <h3 class="pricing-title">Custom Project</h3>
-                        <p class="pricing-subtitle">Proyek Khusus</p>
-                        <div class="pricing-price">Custom</div>
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Sesuai Kebutuhan</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Game Edukasi</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Simulasi</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Multi-platform</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="btn btn-primary">Konsultasi</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="pricing-content" id="asset-pricing">
-                <div class="pricing-grid">
-                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="pricing-title">Aset 2D</h3>
-                        <p class="pricing-subtitle">Sprite & UI</p>
-                        <div class="pricing-price">300-500</div>
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Karakter Sprite</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Tileset</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>UI Elements</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Format PNG/SVG</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="btn btn-primary">Pesan Aset</a>
-                    </div>
-                    
-                    <div class="pricing-card popular" data-aos="fade-up" data-aos-delay="200">
-                        <div class="popular-badge">Populer</div>
-                        <h3 class="pricing-title">Model 3D</h3>
-                        <p class="pricing-subtitle">Low-Poly</p>
-                        <div class="pricing-price">700-1000</div>
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Karakter 3D</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Environment</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Tekstur Dasar</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Format FBX/OBJ</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="btn btn-primary">Pesan Model</a>
-                    </div>
-                    
-                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
-                        <h3 class="pricing-title">Animasi</h3>
-                        <p class="pricing-subtitle">Rigging & Animation</p>
-                        <div class="pricing-price">800-1500</div>
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Character Rigging</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Walk/Run Cycles</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Action Animations</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Unity Ready</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="btn btn-primary">Pesan Animasi</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="pricing-content" id="porting-pricing">
-                <div class="pricing-grid">
-                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="pricing-title">Android ke PC</h3>
-                        <p class="pricing-subtitle">Basic Porting</p>
-                        <div class="pricing-price">2000-3000</div>
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Keyboard/Mouse Controls</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Resolution Adjustment</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Performance Optimization</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Windows Build</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="btn btn-primary">Mulai Porting</a>
-                    </div>
-                    
-                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="pricing-title">PC ke Android</h3>
-                        <p class="pricing-subtitle">Mobile Adaptation</p>
-                        <div class="pricing-price">2500-3500</div>
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Touch Controls</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>UI Scaling</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Performance Optimization</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>APK Build</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="btn btn-primary">Mulai Porting</a>
-                    </div>
-                    
-                    <div class="pricing-card popular" data-aos="fade-up" data-aos-delay="300">
-                        <div class="popular-badge">Populer</div>
-                        <h3 class="pricing-title">Multi-Platform</h3>
-                        <p class="pricing-subtitle">Comprehensive Porting</p>
-                        <div class="pricing-price">4000-5000</div>
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>PC + Mobile + Web</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Adaptive Controls</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Cross-platform Save</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <i class="fas fa-check"></i>
-                                <span>Multiple Builds</span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="btn btn-primary">Mulai Porting</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- STRATEGY SECTION -->
-    <section class="section strategy" id="strategy">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Solusi & Strategi</div>
-                <h2 class="section-title" style="color: white;">Strategi Pemasaran & Solusi</h2>
-                <p class="section-description" style="color: rgba(255, 255, 255, 0.7);">Kami tidak hanya membantu dalam pengembangan game, tetapi juga memberikan strategi pemasaran dan solusi untuk kesuksesan produk Anda.</p>
-            </div>
-            
-            <div class="strategy-grid">
-                <div class="strategy-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="strategy-icon">
-                        <i class="fas fa-share-alt"></i>
-                    </div>
-                    <h3 class="strategy-title">Social Media Marketing</h3>
-                    <p class="strategy-description">Strategi pemasaran melalui platform sosial media untuk meningkatkan awareness dan mencapai target audience potensial.</p>
-                </div>
-                
-                <div class="strategy-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="strategy-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3 class="strategy-title">Kolaborasi Content Creator</h3>
-                    <p class="strategy-description">Menjalin kerjasama dengan content creator gaming untuk mempromosikan game dan menjangkau audiens yang lebih luas.</p>
-                </div>
-                
-                <div class="strategy-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="strategy-icon">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3 class="strategy-title">Fokus Niche Market</h3>
-                    <p class="strategy-description">Mengidentifikasi dan fokus pada target pasar spesifik untuk meningkatkan peluang kesuksesan dalam kompetisi yang ketat.</p>
-                </div>
-                
-                <div class="strategy-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="strategy-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h3 class="strategy-title">Monetisasi Efektif</h3>
-                    <p class="strategy-description">Strategi monetisasi yang efektif melalui in-app purchase, ads, atau premium content untuk menghasilkan pendapatan berkelanjutan.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section class="section contact" id="contact">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-subtitle">Hubungi Kami</div>
-                <h2 class="section-title">Konsultasikan Proyek Anda</h2>
-                <p class="section-description">Kami siap membantu mewujudkan ide game Anda. Hubungi kami untuk konsultasi atau penawaran.</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info" data-aos="fade-right">
-                    <div class="contact-card">
-                        <div class="contact-card-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-card-content">
-                            <h4>Lokasi</h4>
-                            <p>Jovian eksakta/15/XI TJKT 03</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-card-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-card-content">
-                            <h4>Email</h4>
-                            <p>info@vian-dev.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-card-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="contact-card-content">
-                            <h4>Telepon / WhatsApp</h4>
-                            <p>+62 812-3456-7890</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-card-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-card-content">
-                            <h4>Jam Kerja</h4>
-                            <p>Senin - Jumat: 09.00 - 17.00</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form-container" data-aos="fade-left">
-                    <h3 class="contact-form-title">Kirim Pesan</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="name" placeholder="Masukkan nama lengkap Anda" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Masukkan email Anda" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service">Layanan yang Dibutuhkan</label>
-                            <select class="form-control" id="service">
-                                <option value="">Pilih Layanan</option>
-                                <option value="game">Pembuatan Game</option>
-                                <option value="asset">Pembuatan Aset</option>
-                                <option value="porting">Porting</option>
-                                <option value="other">Lainnya</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="budget">Estimasi Budget</label>
-                            <select class="form-control" id="budget">
-                                <option value="">Pilih Range Budget</option>
-                                <option value="< 5jt">< Rp 5 Juta</option>
-                                <option value="5-10jt">Rp 5 - 10 Juta</option>
-                                <option value="10-20jt">Rp 10 - 20 Juta</option>
-                                <option value="> 20jt">> Rp 20 Juta</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Deskripsi Proyek</label>
-                            <textarea class="form-control" id="message" placeholder="Jelaskan detail proyek yang Anda inginkan" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Kirim Pesan
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div>
-                <div class="footer-logo">
-                    <div class="footer-logo-icon">VD</div>
-                    <div class="footer-logo-text">VIAN<span>-DEV</span></div>
-                </div>
-                <p class="footer-about">VIAN-DEV adalah studio pengembangan game indie yang berfokus pada pembuatan game berkualitas, aset 2D/3D, dan layanan porting dengan pendekatan yang optimal dan efisien.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            
-            <div>
-                <h4 class="footer-heading">Layanan</h4>
-                <ul class="footer-links">
-                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Pembuatan Game Indie</a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Pembuatan Aset 2D/3D</a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Porting Android/PC</a></li>
-                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Game Edukasi</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="footer-heading">Link Penting</h4>
-                <ul class="footer-links">
-                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Beranda</a></li>
-                    <li><a href="#features"><i class="fas fa-chevron-right"></i> Tantangan</a></li>
-                    <li><a href="#budget"><i class="fas fa-chevron-right"></i> Budget</a></li>
-                    <li><a href="#strategy"><i class="fas fa-chevron-right"></i> Strategi</a></li>
-                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Kontak</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <h4 class="footer-heading">Kontak</h4>
-                <div class="footer-contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>Jovian eksakta/15/XI TJKT 03</div>
-                </div>
-                <div class="footer-contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>info@vian-dev.com</div>
-                </div>
-                <div class="footer-contact-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <div>+62 812-3456-7890</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            &copy; <span id="year"></span> VIAN-DEV. All Rights Reserved.
-        </div>
-    </footer>
-
-    <!-- AOS Animation Library -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     
-    <!-- JavaScript -->
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            offset: 100,
-            once: true
-        });
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <div class="section-header">
+            <h2>Blog & Artikel</h2>
+            <p>Temukan beragam artikel, tutorial, dan insight terbaru seputar game development</p>
+        </div>
         
-        // Set current year
-        document.getElementById('year').textContent = new Date().getFullYear();
+        <div class="blog-filter">
+            <div class="filter-container">
+                <button class="filter-btn active" data-category="all">Semua</button>
+                <button class="filter-btn" data-category="tutorial">Tutorial</button>
+                <button class="filter-btn" data-category="industry">Industry News</button>
+                <button class="filter-btn" data-category="case-study">Case Study</button>
+                <button class="filter-btn" data-category="tech">Technology</button>
+            </div>
+        </div>
         
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-        
-        // Pricing tabs
-        const pricingTabs = document.querySelectorAll('.pricing-tab');
-        const pricingContents = document.querySelectorAll('.pricing-content');
-        
-        pricingTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs
-                pricingTabs.forEach(t => t.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                tab.classList.add('active');
-                
-                // Hide all pricing content
-                pricingContents.forEach(content => content.classList.remove('active'));
-                
-                // Show corresponding content
-                const tabId = tab.getAttribute('data-tab');
-                document.getElementById(`${tabId}-pricing`).classList.add('active');
-            });
-        });
-        
-        // Form submission with animation
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        <div class="blog-grid">
+            <div class="blog-card" data-category="tutorial">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=600&q=80" alt="Blog 1">
+                    <div class="blog-category">Tutorial</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-date">14 September 2025</div>
+                    <h3>Cara Membuat Sistem Inventory Game RPG dengan Unity</h3>
+                    <p>Pelajari cara membuat sistem inventory yang efisien dan skalabel untuk game RPG Anda menggunakan Unity dan C#.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="view-details">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                        <div class="blog-stats">
+                            <span><i class="far fa-eye"></i> 1.2k</span>
+                            <span><i class="far fa-comment"></i> 24</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+            <div class="blog-card" data-category="industry">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80" alt="Blog 2">
+                    <div class="blog-category">Industry News</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-date">10 September 2025</div>
+                    <h3>Tren Game Development Indonesia 2025: Apa yang Berubah?</h3>
+                    <p>Analisis mendalam tentang perkembangan industri game di Indonesia tahun 2025 dan prediksi tren untuk tahun mendatang.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="view-details">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                        <div class="blog-stats">
+                            <span><i class="far fa-eye"></i> 3.5k</span>
+                            <span><i class="far fa-comment"></i> 42</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            // Simulate form submission (replace with actual form submission)
-            setTimeout(() => {
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Terkirim!';
-                submitBtn.style.background = '#28a745';
+            <div class="blog-card" data-category="case-study">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="Blog 3">
+                    <div class="blog-category">Case Study</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-date">5 September 2025</div>
+                    <h3>Case Study: Bagaimana Game "Fantasy World" Mencapai 1 Juta Download</h3>
+                    <p>Melihat strategi marketing, game design, dan monetisasi yang membuat game Fantasy World sukses di pasar global.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="view-details">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                        <div class="blog-stats">
+                            <span><i class="far fa-eye"></i> 2.8k</span>
+                            <span><i class="far fa-comment"></i> 36</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="view-all-container">
+            <a href="/blog" class="accent-btn">Lihat Semua Artikel</a>
+        </div>
+    </section>
+    
+    <!-- Interactive Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="section-header">
+            <h2>Demo Interaktif</h2>
+            <p>Coba demo game dan aplikasi kami langsung di browser Anda</p>
+        </div>
+        
+        <div class="demo-container">
+            <div class="demo-tabs">
+                <button class="demo-tab active" data-game="puzzle">Puzzle Adventure</button>
+                <button class="demo-tab" data-game="shooter">Space Shooter</button>
+                <button class="demo-tab" data-game="quiz">Quiz Challenge</button>
+            </div>
+            
+            <div class="game-container">
+                <div class="game-frame active" id="puzzle-game">
+                    <div class="game-content">
+                        <div class="puzzle-game">
+                            <div class="puzzle-board">
+                                <div class="puzzle-piece" data-position="1">1</div>
+                                <div class="puzzle-piece" data-position="2">2</div>
+                                <div class="puzzle-piece" data-position="3">3</div>
+                                <div class="puzzle-piece" data-position="4">4</div>
+                                <div class="puzzle-piece" data-position="5">5</div>
+                                <div class="puzzle-piece" data-position="6">6</div>
+                                <div class="puzzle-piece" data-position="7">7</div>
+                                <div class="puzzle-piece" data-position="8">8</div>
+                                <div class="puzzle-piece empty" data-position="9"></div>
+                            </div>
+                            <div class="puzzle-controls">
+                                <button class="game-btn" id="shuffle-puzzle">Acak Puzzle</button>
+                                <div class="game-stats">
+                                    <span>Gerakan: <span id="move-count">0</span></span>
+                                    <span>Waktu: <span id="time-count">00:00</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>Puzzle Adventure</h3>
+                        <p>Game puzzle sederhana yang menguji kemampuan berpikir logis Anda. Atur ulang potongan puzzle ke posisi yang benar dengan gerakan minimal.</p>
+                        <div class="game-meta">
+                            <span><i class="fas fa-gamepad"></i> Casual</span>
+                            <span><i class="fas fa-brain"></i> Puzzle</span>
+                            <span><i class="fas fa-user"></i> Single Player</span>
+                        </div>
+                        <a href="#" class="primary-btn">Lihat Game Lengkap</a>
+                    </div>
+                </div>
                 
-                // Reset form
-                setTimeout(() => {
-                    contactForm.reset();
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Pesan';
-                    submitBtn.style.background = '';
-                }, 3000);
-            }, 2000);
-        });
-        
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+                <div class="game-frame" id="shooter-game">
+                    <div class="game-content">
+                        <div class="space-shooter">
+                            <canvas id="shooter-canvas" width="500" height="400"></canvas>
+                            <div class="game-controls">
+                                <button class="game-btn" id="start-shooter">Mulai Game</button>
+                                <div class="game-stats">
+                                    <span>Skor: <span id="shooter-score">0</span></span>
+                                    <span>Nyawa: <span id="shooter-lives">3</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>Space Shooter</h3>
+                        <p>Game shooter arcade di luar angkasa. Kendalikan pesawat Anda, hindari asteroid, dan kalahkan musuh untuk mendapatkan skor tertinggi.</p>
+                        <div class="game-meta">
+                            <span><i class="fas fa-gamepad"></i> Arcade</span>
+                            <span><i class="fas fa-rocket"></i> Shooter</span>
+                            <span><i class="fas fa-user"></i> Single Player</span>
+                        </div>
+                        <a href="#" class="primary-btn">Lihat Game Lengkap</a>
+                    </div>
+                </div>
                 
-                // Close mobile menu if open
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+                <div class="game-frame" id="quiz-game">
+                    <div class="game-content">
+                        <div class="quiz-game">
+                            <div class="quiz-question">
+                                <h4 id="question-text">Bahasa pemrograman yang paling umum digunakan untuk pengembangan game mobile adalah?</h4>
+                                <div class="quiz-options">
+                                    <div class="quiz-option" data-correct="false">PHP</div>
+                                    <div class="quiz-option" data-correct="false">Ruby</div>
+                                    <div class="quiz-option" data-correct="true">C#</div>
+                                    <div class="quiz-option" data-correct="false">Python</div>
+                                </div>
+                            </div>
+                            <div class="quiz-controls">
+                                <button class="game-btn" id="next-question">Pertanyaan Berikutnya</button>
+                                <div class="game-stats">
+                                    <span>Skor: <span id="quiz-score">0</span>/10</span>
+                                    <span>Waktu: <span id="quiz-timer">30</span>s</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>Quiz Challenge</h3>
+                        <p>Uji pengetahuan Anda tentang game development dalam quiz interaktif ini. Jawab pertanyaan dengan benar untuk mendapatkan skor tinggi.</p>
+                        <div class="game-meta">
+                            <span><i class="fas fa-gamepad"></i> Educational</span>
+                            <span><i class="fas fa-question-circle"></i> Quiz</span>
+                            <span><i class="fas fa-user"></i> Single Player</span>
+                        </div>
+                        <a href="#" class="primary-btn">Lihat Game Lengkap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="section-header">
+            <h2>Portfolio Kami</h2>
+            <p>Lihat beberapa proyek terbaik yang telah kami kerjakan untuk klien-klien ternama</p>
+        </div>
         
-        // Add interactive elements and animations
-        
-        // Floating elements animation
-        const heroImage = document.querySelector('.hero-illustration');
-        let floatY = 0;
-        let floatX = 0;
-        let floatDirection = 1;
-        
-        function updateFloating() {
-            floatY += 0.03 * floatDirection;
-            floatX += 0.02 * floatDirection;
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="Game 1" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <h3>Fantasy World</h3>
+                    <p>Game RPG dengan dunia fantasi yang luas dan sistem pertarungan inovatif.</p>
+                    <button class="portfolio-btn">Detail</button>
+                </div>
+            </div>
             
-            if (floatY > 10 || floatY < -10) {
-                floatDirection *= -1;
-            }
-            
-            heroImage.style.transform = `translateY(${floatY}px) translateX(${floatX}px)`;
-            requestAnimationFrame(updateFloating);
-        }
-        
-        updateFloating();
-        
-        // Interactive cards
-        const cards = document.querySelectorAll('.feature-card, .service-card, .pricing-card, .strategy-card');
-        
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-15px) scale(1.03)';
-                card.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.12)';
-                card.style.transition = 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-                card.style.boxShadow = '';
-                card.style.transition = 'all 0.3s ease';
-            });
-        });
-        
-        // Animated counter for statistics (can be added to any section)
-        function animateCounter(element, target, duration) {
-            let start = 0;
-            const increment = target / (duration / 16);
-            
-            function updateCounter() {
-                start += increment;
-                if (start > target) start = target;
-                element.textContent = Math.floor(start);
-                
-                if (start < target) {
-                    requestAnimationFrame(updateCounter);
-                }
-            }
-            
-            updateCounter();
-        }
-        
-        // Mousemove parallax effect for hero section
-        const heroSection = document.querySelector('.hero');
-        const heroBlob = document.querySelector('.hero-blob');
-        
-        heroSection.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            
-            heroBlob.style.transform = `translate(${x * 50 - 25}px, ${y * 50 - 25}px)`;
-        });
-    </script>
-</body>
-</html>
+            <div class="portfolio-item">
